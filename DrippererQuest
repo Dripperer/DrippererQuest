@@ -1,0 +1,71 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+fans = {}
+challenges = [
+    {"id": 1, "description": "Ascolta e Condividi la nostra canzone", "points": 10},
+    {"id": 2, "description": "Posta una foto o video con la nostra musica", "points": 20},
+    {"id": 3, "description": "Partecipa al quiz musicale", "points": 15},
+    {"id": 4, "description": "Check-in agli eventi virtuali", "points": 25}
+]
+
+quiz_questions = [
+    {
+        "question": "Come si chiama la nostra prima canzone? Drip&chill, drip&drill o chill&relax?",
+        "answer": "drip&chill"
+    },
+    {
+        "question": "In quanti eravamo all'inizio? 3, 6, 5?",
+        "answer": "5"
+    },
+    {
+        "question": "Qual è il nostro genere principale? poprock, trap o pop?",
+        "answer": "poprock"
+    },
+    {
+        "question": "Chi è il batterista? Andrea o sebasthian?",
+        "answer": "sebasthian"
+    },
+    {
+        "question": "All'inizio di Drip&chill che strumento c'è? basso, chitarra o batteria?",
+        "answer": "batteria"
+    },
+    {
+        "question": "Quando è nata la band? luglio 2023, ottobre 2024 o luglio 2024?",
+        "answer": "luglio 2023"
+    }
+]
+
+@app.route('/register', methods=['POST'])
+def register_fan():
+    data = request.get_json()
+    fan_id = len(fans) + 1
+    fans[fan_id] = {
+        "name": data['name'],
+        "points": 0
+    }
+    return jsonify({"message": "Fan registrato con successo!", "fan_id": fan_id})
+
+@app.route('/complete_challenge', methods=['POST'])
+def complete_challenge():
+    data = request.get_json()
+    fan_id = data['fan_id']
+    challenge_id = data['challenge_id']
+    challenge = next((ch for ch in challenges if ch['id'] == challenge_id), None)
+    if challenge:
+        fans[fan_id]['points'] += challenge['points']
+        return jsonify({"message": "Sfida completata!", "total_points": fans[fan_id]['points']})
+    return jsonify({"message": "Sfida non trovata!"}), 404
+
+@app.route('/leaderboard', methods=['GET'])
+def leaderboard():
+    sorted_fans = sorted(fans.items(), key=lambda x: x[1]['points'], reverse=True)
+    return jsonify({"leaderboard": sorted_fans})
+
+@app.route('/quiz', methods=['GET'])
+def get_quiz():
+    return jsonify({"questions": quiz_questions})
+
+if __name__ == '__main__':
+    app.run(debug=True)
