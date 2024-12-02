@@ -3,49 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BandQuest</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        header, footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-        }
-        .container {
-            padding: 2em;
-        }
-        .login {
-            text-align: center;
-            margin-top: 50px;
-        }
-        .quiz-question {
-            margin: 1em 0;
-        }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.5em 1em;
-            border: none;
-            cursor: pointer;
-        }
-        .feedback {
-            font-weight: bold;
-            display: none;
-        }
-        .feedback.correct {
-            color: green;
-        }
-        .feedback.incorrect {
-            color: red;
-        }
-    </style>
+    <title>BandQuest - Accesso</title>
+    <link rel="stylesheet" href="stile.css">
 </head>
 <body>
 
@@ -63,19 +22,11 @@
     </div>
 </div>
 
-<div class="container" id="quiz-screen" style="display: none;">
-    <h2>Sfide Settimanali</h2>
-    <p>Completa le sfide settimanali per guadagnare punti e vincere fantastici premi!</p>
+<footer>
+    <p>&copy; 2024 BandQuest. Tutti i diritti riservati.</p>
+</footer>
 
-    <div class="quiz">
-        <h3>Quiz Musicale</h3>
-        <div class="quiz-question" data-answer="drip&chill">
-            <p>Come si chiama la nostra prima canzone? </p>
-            <button class="btn" onclick="checkAnswer(this, 'drip&chill')">Drip&chill</button>
-            <button class="btn" onclick="checkAnswer(this, 'drip&drill')">Drip&drill</button>
-            <button class="btn" onclick="checkAnswer(this, 'chill&relax')">Chill&relax</button>
-            <p class="feedback"></p>
-        </div>
-        <div class="quiz-question" data-answer="5">
-            <p>In quanti eravamo all'inizio? </p>
-            <button class="btn" onclick="checkAnswer(this, '3')
+<script src="codice.js" defer></script>
+
+</body>
+</html>

@@ -3,45 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BandQuest</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        header, footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-        }
-        .container {
-            padding: 2em;
-        }
-        .quiz-question {
-            margin: 1em 0;
-        }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.5em 1em;
-            border: none;
-            cursor: pointer;
-        }
-        .feedback {
-            font-weight: bold;
-            display: none;
-        }
-        .feedback.correct {
-            color: green;
-        }
-        .feedback.incorrect {
-            color: red;
-        }
-    </style>
+    <title>BandQuest - Quiz</title>
+    <link rel="stylesheet" href="stile.css">
 </head>
 <body>
 
@@ -50,7 +13,7 @@
     <p>Benvenuto nel gioco della tua band preferita!</p>
 </header>
 
-<div class="container">
+<div class="container" id="quiz-screen">
     <h2>Sfide Settimanali</h2>
     <p>Completa le sfide settimanali per guadagnare punti e vincere fantastici premi!</p>
 
@@ -104,25 +67,7 @@
     <p>&copy; 2024 BandQuest. Tutti i diritti riservati.</p>
 </footer>
 
-<script>
-    function checkAnswer(button, userAnswer) {
-        const questionDiv = button.parentElement;
-        const correctAnswer = questionDiv.getAttribute('data-answer');
-        const feedback = questionDiv.querySelector('.feedback');
-
-        if (userAnswer === correctAnswer) {
-            feedback.textContent = "+10!";
-            feedback.classList.add('correct');
-            feedback.classList.remove('incorrect');
-        } else {
-            feedback.textContent = "Sbagliato!!";
-            feedback.classList.add('incorrect');
-            feedback.classList.remove('correct');
-        }
-
-        feedback.style.display = 'block';
-    }
-</script>
+<script src="codice.js" defer></script>
 
 </body>
 </html>
